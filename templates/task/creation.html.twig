@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+    {% if edit is defined %}
+        Editar Tarea
+
+    {% else %}
+
+        Crear Tarea
+
+    {% endif %}
+
+{% endblock %}
+
+
+{% block body %}
+
+
+<div class="example-wrapper pt-5">
+    <h2 class="text-center">
+        {% if edit is defined %}
+            Editar Tarea
+
+        {% else %}
+
+            Crear Tarea
+
+        {% endif %}
+    </h2>
+
+    <form action="" method="POST">
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_widget(form) }}
+        </div>
+        {{ form_end (form) }}
+
+    </form>
+
+
+</div>
+{% endblock %}

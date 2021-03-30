@@ -1,0 +1,38 @@
+<table class="table text-center">
+    <tr>
+        <th>Tarea</th>
+        <th>Prioridad</th>
+        <th>Horas presupuestadas</th>
+        <th>Acciones</th>
+        
+    </tr>
+
+    {% for task in tasks %}
+
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>
+                {% if task.priority == 'high'%}
+                Alta
+                {% endif %}
+                {% if task.priority == 'medium'%}
+                Media
+                {% endif %}
+                {% if task.priority == 'low'%}
+                Baja
+                {% endif %}
+
+            <td>{{ task.hours }}</td>
+            <td>
+                <a href="{{ path('task_detail', {'id':task.id}) }}" class="btn btn-success">Ver</a>
+                {% if app.user  %}
+                    {% if task.user.id == app.user.id %}
+                    <a href="{{ path('task_edit', {'id':task.id}) }}" class="btn btn-warning">Editar</a>
+                    <a href="{{ path('delete', {'id':task.id}) }}" class="btn btn-danger">Borrar</a>
+                    {% endif %}
+                {% endif %}
+
+            </td>
+        </tr>
+    {% endfor %}
+</table>
